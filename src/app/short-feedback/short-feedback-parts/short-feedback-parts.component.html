@@ -1,0 +1,48 @@
+<input type="hidden" #selection>
+
+<div class="card-container">
+
+  <!--    Positive -->
+  <!--    Template variables  + class binding-->
+  <button #explanationPositive [class.card-active]="shortFeedbackFormPartialModel.explanationPositive" (click)="onSelectPartialThumbUp(explanationPositive)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small" >thumb_up_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.explanationPositiveText }}</span>
+  </button>
+
+  <button #presentationPositive [class.card-active]="shortFeedbackFormPartialModel.presentationPositive" (click)="onSelectPartialThumbUp(presentationPositive)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_up_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.presentationPositiveText }}</span>
+  </button>
+
+  <button #structurePositive [class.card-active]="shortFeedbackFormPartialModel.structurePositive" (click)="onSelectPartialThumbUp(structurePositive)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_up_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.structurePositiveText }}</span>
+  </button>
+
+  <button #subjectPositive [class.card-active]="shortFeedbackFormPartialModel.subjectsPositive" (click)="onSelectPartialThumbUp(subjectPositive)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_up_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.subjectsPositiveText }}</span>
+  </button>
+
+  <!--    Negative -->
+  <!--    Template variables  + class binding-->
+  <button #explanationNegative [class.card-active]="shortFeedbackFormPartialModel.explanationNegative" (click)="onSelectPartialThumbDown(explanationNegative)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.explanationNegativeText }}</span>
+  </button>
+
+  <button #presentationNegative [class.card-active]="shortFeedbackFormPartialModel.presentationNegative" (click)="onSelectPartialThumbDown(presentationNegative)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.presentationNegativeText }}</span>
+  </button>
+
+  <button #structureNegative [class.card-active]="shortFeedbackFormPartialModel.structureNegative" (click)="onSelectPartialThumbDown(structureNegative)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.structureNegativeText }}</span>
+  </button>
+
+  <button #subjectNegative [class.card-active]="shortFeedbackFormPartialModel.subjectsNegative" (click)="onSelectPartialThumbDown(subjectNegative)" class="card card-small thumb-card" tabindex="0">
+    <mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon>
+    <span>{{ shortFeedbackFormPartialModel.subjectsNegativeText }}</span>
+  </button>
+</div>

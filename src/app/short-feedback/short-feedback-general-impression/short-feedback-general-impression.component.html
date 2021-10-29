@@ -1,0 +1,15 @@
+<div class="card-container">
+  <!--    <a class="thumb-card" target="_blank" rel="noopener" [(ngModel)]="shortFeedbackSelectedForm.thumbsUp" (click)="onSelect()">-->
+  <!-- Class binding -->
+  <a [class.card-active]="shortFeedbackFormGeneral.generalThumbsUp" (click)="onSelectGeneralThumbUp($event)" class="thumb-card" target="_blank" rel="noopener">
+      <span class="material-icons" id="thumps-up-icon">
+        thumb_up_alt
+      </span>
+  </a>
+
+  <a [class.card-active]="shortFeedbackFormGeneral.generalThumbsDown" (click)="onSelectGeneralThumbDown($event)" class="thumb-card" target="_blank" rel="noopener">
+      <span class="material-icons" id="thumps-down-icon">
+        thumb_down_alt
+      </span>
+  </a>
+</div>

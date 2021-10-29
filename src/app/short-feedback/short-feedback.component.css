@@ -1,0 +1,25 @@
+.feedback-header {
+  background-color: #BF0A30;
+  color: white;
+  margin: 50px;
+  padding: 10px 200px;
+}
+
+.content {
+  display: flex;
+  margin: 20px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 21px;
+  font-weight: bold;
+}
