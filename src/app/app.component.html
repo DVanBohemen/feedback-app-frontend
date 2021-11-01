@@ -8,18 +8,25 @@
     />
   </a>
     <div class="spacer"></div>
-    <a class="clickable" aria-label="Settings" target="_blank" rel="noopener" title="Instellingen">
+
+  <a class="clickable" aria-label="Settings" rel="noopener" title="Instellingen" routerLink="/settings" routerLinkActive="active">
       <img id="instellingen" width="60" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" src="assets/images/cloud-gear.svg">
       <p>Instellingen</p>
     </a>
-    <a class="clickable" aria-label="Send feedback" target="_blank" rel="noopener" title="Feedback verzenden">
+    <a class="clickable" aria-label="Send feedback" rel="noopener" title="Feedback verzenden" routerLink="/short-feedback">
       <img id="feedback-verzenden" width="60" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" src="assets/images/cloud-check.svg">
       <p>Formulier opsturen</p>
     </a>
+
+  <!--  <a class="clickable" aria-label="Login" rel="noopener" title="Inloggen" routerLink="/inloggen" routerLinkActive="active">-->
+  <!--    <mat-icon id="inloggen">person</mat-icon>-->
+  <!--    <p>Inloggen</p>-->
+  <!--  </a>-->
 </nav>
 <div class="content" role="main">
   <app-introduction></app-introduction>
-  <app-short-feedback></app-short-feedback>
+  <router-outlet></router-outlet>
+
   <!-- Footer -->
   <footer>
       Love This?&nbsp;
@@ -40,4 +47,3 @@
   </svg>
 
 </div>
-<router-outlet></router-outlet>

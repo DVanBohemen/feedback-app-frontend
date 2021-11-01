@@ -36,6 +36,11 @@ p {
   color: white;
   font-weight: 600;
 }
+.toolbar #inloggen {
+  padding-top: 50px;
+  /*transform: scale(3);*/
+  font-size: 60px;
+}
 
 .toolbar img {
   padding-top: 50px;

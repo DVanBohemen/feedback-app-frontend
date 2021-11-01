@@ -1,0 +1,46 @@
+<mat-list>
+  <h3>Aanmaken van op maat gemaakte labels</h3>
+  <div id="custom-label-creator">
+    <span class="spacer" [formGroup]="labelFormGroup">
+        <mat-form-field appearance="outline">
+            <mat-label>Naam van de label</mat-label>
+            <input matInput id="labelNameInput" formControlName="labelName">
+        </mat-form-field>
+      </span>
+    <span class="spacer">
+      <mat-button-toggle-group name="positiveOrFeedback" class="spacer" aria-label="Positive or Feedback">
+        <mat-button-toggle value="Positive" (change)="setPositive()" checked="true"><mat-icon class="material-icons thumb-small">thumb_up_alt</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="Negative" (change)="setNegative()"><mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon></mat-button-toggle>
+      </mat-button-toggle-group>
+      <button mat-raised-button (click)="removeLabel()" color="warn" class="spacer">Verwijderen</button>
+      <button mat-raised-button (click)="addLabel()" color="primary" class="spacer">Toevoegen</button>
+      </span>
+  </div>
+  <mat-divider class="spacer"></mat-divider>
+  <div class="example-container">
+    <h2>Aangemaakte labels</h2>
+    <span
+      cdkDropList
+      #labelList="cdkDropList"
+      [cdkDropListData]="labels"
+      [cdkDropListConnectedTo]="[useList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <span class="example-box" *ngFor="let item of labels" cdkDrag>{{item}}</span>
+    </span>
+  </div>
+
+  <div class="example-container">
+    <h2>Labels in gebruik</h2>
+    <span
+      cdkDropList
+      #useList="cdkDropList"
+      [cdkDropListData]="useLabels"
+      [cdkDropListConnectedTo]="[labelList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <span class="example-box" *ngFor="let item of useLabels" cdkDrag>{{item}}</span>
+    </span>
+  </div>
+</mat-list>
+
