@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import {CourseRetrievalService} from "../shared/services/course-retrieval.service";
+import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {CourseService} from "../common/services/course.service";
 
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.css']
 })
-export class IntroductionComponent implements OnInit {
-  public course: string;
+export class IntroductionComponent implements OnInit, AfterContentInit {
+  course: string;
+  private courseService: CourseService;
 
-  constructor(courseService: CourseRetrievalService) {
+  constructor(courseService: CourseService) {
+    this.courseService = courseService;
     this.course = courseService.getCourse();
   }
 
   ngOnInit(): void {
   }
 
+  ngAfterContentInit(): void {
+    this.course = this.courseService.getCourse();
+  }
 }

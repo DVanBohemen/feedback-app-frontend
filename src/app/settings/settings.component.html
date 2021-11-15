@@ -1,5 +1,7 @@
-<h2>Instellingen</h2>
-
+<h1>Instellingen</h1>
+<mat-divider class="spacer"></mat-divider>
+<app-course></app-course>
+<mat-divider class="spacer"></mat-divider>
 <mat-slide-toggle #checked (change)="onChecked(checked)">Gebruik handgemaakte labels</mat-slide-toggle>
 <mat-divider class="spacer"></mat-divider>
 <app-label-creator *ngIf="customLabelsEnabled"></app-label-creator>

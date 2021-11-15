@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {FeedbackService} from "../../common/services/feedback.service";
 
 class Label {
   private _name: string;
@@ -39,7 +40,7 @@ export class LabelCreatorComponent implements OnInit {
   positive = true;
   useLabels: any[];
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private feedbackService: FeedbackService) {
     this.labelFormGroup = this._formBuilder.group({
       labelName: new FormControl('', [
           Validators.required,
@@ -80,5 +81,9 @@ export class LabelCreatorComponent implements OnInit {
 
   removeLabel() {
     this.labelModels = this.labelModels.filter(name => !this.labelFormGroup.get('labelName')?.value);
+  }
+
+  submitLabels() {
+    this.feedbackService
   }
 }

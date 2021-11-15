@@ -1,20 +1,28 @@
 export class ShortFeedbackFormPartialModel {
 
   private _structurePositive: boolean;
+  private _structurePositiveWeight = 1;
   private _structurePositiveText = "Structuur van de sessies";
   private _structureNegative: boolean;
+  private _structureNegativeWeight = -1;
   private _structureNegativeText = "Structuur van de sessies";
   private _presentationPositive: boolean;
+  private _presentationPositiveWeight = 1;
   private _presentationPositiveText = "Goede presentaties";
   private _presentationNegative: boolean;
+  private _presentationNegativeWeight = -1;
   private _presentationNegativeText = "Presentatie";
   private _subjectsPositive: boolean;
+  private _subjectsPositiveWeight = 1;
   private _subjectsPositiveText = "Besproken onderwerpen";
   private _subjectsNegative: boolean;
+  private _subjectsNegativeWeight = -1;
   private _subjectsNegativeText = "Besproken onderwerpen";
   private _explanationPositive: boolean;
+  private _explanationPositiveWeight = 1;
   private _explanationPositiveText = "Duidelijke uitleg";
   private _explanationNegative: boolean;
+  private _explanationNegativeWeight = -1;
   private _explanationNegativeText = "Uitleg kon beter";
 
   constructor(structurePositive: boolean, structureNegative: boolean, presentationPositive: boolean, presentationNegative:
@@ -146,5 +154,69 @@ export class ShortFeedbackFormPartialModel {
   }
   get explanationNegativeText(): string {
     return this._explanationNegativeText;
+  }
+
+  get structurePositiveWeight(): number {
+    return this._structurePositiveWeight;
+  }
+
+  set structurePositiveWeight(value: number) {
+    this._structurePositiveWeight = value;
+  }
+
+  get structureNegativeWeight(): number {
+    return this._structureNegativeWeight;
+  }
+
+  set structureNegativeWeight(value: number) {
+    this._structureNegativeWeight = value;
+  }
+
+  get presentationPositiveWeight(): number {
+    return this._presentationPositiveWeight;
+  }
+
+  set presentationPositiveWeight(value: number) {
+    this._presentationPositiveWeight = value;
+  }
+
+  get presentationNegativeWeight(): number {
+    return this._presentationNegativeWeight;
+  }
+
+  set presentationNegativeWeight(value: number) {
+    this._presentationNegativeWeight = value;
+  }
+
+  get subjectsPositiveWeight(): number {
+    return this._subjectsPositiveWeight;
+  }
+
+  set subjectsPositiveWeight(value: number) {
+    this._subjectsPositiveWeight = value;
+  }
+
+  get subjectsNegativeWeight(): number {
+    return this._subjectsNegativeWeight;
+  }
+
+  set subjectsNegativeWeight(value: number) {
+    this._subjectsNegativeWeight = value;
+  }
+
+  get explanationPositiveWeight(): number {
+    return this._explanationPositiveWeight;
+  }
+
+  set explanationPositiveWeight(value: number) {
+    this._explanationPositiveWeight = value;
+  }
+
+  get explanationNegativeWeight(): number {
+    return this._explanationNegativeWeight;
+  }
+
+  set explanationNegativeWeight(value: number) {
+    this._explanationNegativeWeight = value;
   }
 }

@@ -1,0 +1,8 @@
+<h2>Naam van de cursus</h2>
+<form (ngSubmit)="submit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Cursus naam</mat-label>
+    <input matInput [value]="courseName.value" [formControl]="courseName" name="name">
+  </mat-form-field>
+  <button mat-raised-button type="submit" (click)="submit()">Opslaan</button>
+</form>

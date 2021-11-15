@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {
   ShortFeedbackFormPartialModel
 } from "./short-feedback-form-partial.model";
+
 
 @Component({
   selector: 'app-short-feedback-parts',
@@ -10,6 +11,8 @@ import {
 })
 export class ShortFeedbackPartsComponent implements OnInit {
   shortFeedbackFormPartialModel: ShortFeedbackFormPartialModel;
+
+  @Output() newPartialtFeedbackEvent = new EventEmitter<ShortFeedbackFormPartialModel>();
 
   constructor() {
     this.shortFeedbackFormPartialModel = new ShortFeedbackFormPartialModel(false, false, false, false, false,
@@ -33,6 +36,7 @@ export class ShortFeedbackPartsComponent implements OnInit {
       this.shortFeedbackFormPartialModel.subjectsPositive = !this.shortFeedbackFormPartialModel.subjectsPositive;
       this.shortFeedbackFormPartialModel.subjectsNegative = false;
     }
+    this.newPartialtFeedbackEvent.emit(this.shortFeedbackFormPartialModel);
   }
 
   onSelectPartialThumbDown(buttonElement: HTMLButtonElement): void {
@@ -49,6 +53,6 @@ export class ShortFeedbackPartsComponent implements OnInit {
       this.shortFeedbackFormPartialModel.subjectsNegative = !this.shortFeedbackFormPartialModel.subjectsNegative;
       this.shortFeedbackFormPartialModel.subjectsPositive = false;
     }
+    this.newPartialtFeedbackEvent.emit(this.shortFeedbackFormPartialModel);
   }
-
 }

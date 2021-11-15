@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ShortFeedbackFormGeneralModel} from "./short-feedback-general-form.model";
 import {style} from "@angular/animations";
 
@@ -9,6 +9,8 @@ import {style} from "@angular/animations";
 })
   export class ShortFeedbackGeneralImpressionComponent implements OnInit {
   shortFeedbackFormGeneral: ShortFeedbackFormGeneralModel;
+
+  @Output() newGeneralImpressionEvent = new EventEmitter<ShortFeedbackFormGeneralModel>();
 
   constructor() {
     this.shortFeedbackFormGeneral = new ShortFeedbackFormGeneralModel(false, false);
@@ -24,6 +26,8 @@ import {style} from "@angular/animations";
     } else {
       this.shortFeedbackFormGeneral.generalThumbsUp = false;
     }
+    $event.stopPropagation();
+    this.newGeneralImpressionEvent.emit(this.shortFeedbackFormGeneral);
   }
 
   onSelectGeneralThumbDown($event: Event): void {
@@ -34,6 +38,6 @@ import {style} from "@angular/animations";
       this.shortFeedbackFormGeneral.generalThumbsDown = false;
     }
     $event.stopPropagation();
+    this.newGeneralImpressionEvent.emit(this.shortFeedbackFormGeneral);
   }
-
 }

@@ -1,10 +1,10 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IntroductionComponent } from './introduction/introduction.component';
-import {CourseRetrievalService} from "./shared/services/course-retrieval.service";
+import {CourseService} from "./common/services/course.service";
 import { ShortFeedbackComponent } from './short-feedback/short-feedback.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
@@ -24,6 +24,10 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatTableModule} from "@angular/material/table";
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {HttpClientModule} from "@angular/common/http";
+import {AppErrorHandler} from "./common/services/app-error-handler";
+import {DataService} from "./common/services/data.service";
+import { CourseComponent } from './settings/course/course.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     ShortFeedbackPartsComponent,
     SettingsComponent,
     FormSentComponent,
-    LabelCreatorComponent
+    LabelCreatorComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,14 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     NgSelectModule,
     MatButtonToggleModule,
     MatTableModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
-  providers: [CourseRetrievalService],
+  providers: [
+    DataService,
+    CourseService,
+    { provide: ErrorHandler, useClass: AppErrorHandler } //Replace Default error handler
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

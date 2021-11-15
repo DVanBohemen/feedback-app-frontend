@@ -6,7 +6,8 @@
     <h2 >Wat vond je van de {{ course }}?</h2>
   </div>
   <p>Algemene impressie</p>
-  <app-short-feedback-general-impression></app-short-feedback-general-impression>
+  <app-short-feedback-general-impression (newGeneralImpressionEvent)="addGeneralFeedback($event)"></app-short-feedback-general-impression>
   <p>Onderdelen</p>
-  <app-short-feedback-parts></app-short-feedback-parts>
+  <app-short-feedback-parts (newPartialtFeedbackEvent)="addPartialFeedback($event)"></app-short-feedback-parts>
+  <button mat-raised-button color="primary" *ngIf="showSubmit()" (click)="submit()">Feedback verzenden</button>
 </div>
