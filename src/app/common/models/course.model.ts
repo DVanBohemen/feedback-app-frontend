@@ -1,7 +1,10 @@
-class Course {
+import {StorableItemModel} from './storable-item.model';
+
+export class Course extends StorableItemModel{
   private _courseName: string;
 
   constructor(name: string) {
+    super("course");
     this._courseName = name;
   }
 
@@ -11,5 +14,8 @@ class Course {
 
   set courseName(value: string) {
     this._courseName = value;
+  }
+
+  load(content: string): void {
   }
 }

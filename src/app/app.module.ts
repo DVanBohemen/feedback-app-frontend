@@ -12,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShortFeedbackGeneralImpressionComponent } from './short-feedback/short-feedback-general-impression/short-feedback-general-impression.component';
 import { ShortFeedbackPartsComponent } from './short-feedback/short-feedback-parts/short-feedback-parts.component';
 import { SettingsComponent } from './settings/settings.component';
-import { FormSentComponent } from './form-sent/form-sent.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { LabelCreatorComponent } from './settings/label-creator/label-creator.component';
 import {MatListModule} from "@angular/material/list";
@@ -28,6 +27,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppErrorHandler} from "./common/services/app-error-handler";
 import {DataService} from "./common/services/data.service";
 import { CourseComponent } from './settings/course/course.component';
+import { ScoreComponent } from './settings/score/score.component';
+import {ScoreService} from './common/services/score.service';
+import {NgRatingBarModule} from 'ng-rating-bar';
+import {CustomFeedbackService} from './common/services/custom-feedback.service';
+import {FeedbackService} from './common/services/feedback.service';
+import { ShortFeedbackCustomPartsComponent } from './short-feedback/short-feedback-custom-parts/short-feedback-custom-parts.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +42,10 @@ import { CourseComponent } from './settings/course/course.component';
     ShortFeedbackGeneralImpressionComponent,
     ShortFeedbackPartsComponent,
     SettingsComponent,
-    FormSentComponent,
     LabelCreatorComponent,
-    CourseComponent
+    CourseComponent,
+    ScoreComponent,
+    ShortFeedbackCustomPartsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,11 +64,15 @@ import { CourseComponent } from './settings/course/course.component';
     MatButtonToggleModule,
     MatTableModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    NgRatingBarModule
   ],
   providers: [
     DataService,
+    ScoreService,
     CourseService,
+    CustomFeedbackService,
+    FeedbackService,
     { provide: ErrorHandler, useClass: AppErrorHandler } //Replace Default error handler
   ],
   bootstrap: [AppComponent],

@@ -6,9 +6,10 @@
     "types": []
   },
   "files": [
-    "src/main.ts",
-    "src/polyfills.ts",
-    "src/app/common/models/course.model.ts"
+      "src/main.ts",
+      "src/polyfills.ts",
+      "src/app/common/models/course.model.ts",
+      "src/app/common/models/label.model.ts"
   ],
   "include": [
     "src/**/*.d.ts"

@@ -1,6 +1,7 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {DataService} from "./data.service";
+import {Course} from '../models/course.model';
 
 @Injectable()
 export class CourseService extends DataService {
@@ -14,9 +15,9 @@ export class CourseService extends DataService {
     this.retrievedCourse = "";
   }
 
-  getCourse() {
+    getCourse() {
     this.get<Course>(this._courseUrl).subscribe(response => {
-        console.log(response.courseName)
+      console.log("Retrieved coursename: " + response.courseName)
       this.retrievedCourse = response.courseName;
       }, error => {
         alert('Error when retrieving course!');
@@ -28,7 +29,7 @@ export class CourseService extends DataService {
   createCourse(courseName: string) {
     this.post({"courseName": courseName}, this._courseUrl)
     .subscribe(response => {
-        console.log(response)
+      console.log("Created course: " + courseName)
         this.createdCourse = response;
         alert("Course saved")
       }, error => {

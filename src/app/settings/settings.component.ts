@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {FeedbackService} from "../common/services/feedback.service";
+import {CustomFeedbackService} from '../common/services/custom-feedback.service';
 
 @Component({
   selector: 'app-settings',
@@ -10,7 +11,7 @@ import {FeedbackService} from "../common/services/feedback.service";
 export class SettingsComponent implements OnInit {
   customLabelsEnabled: boolean;
 
-  constructor(private feedbackService: FeedbackService) {
+  constructor(private feedbackService: CustomFeedbackService) {
     this.customLabelsEnabled = false;
   }
 
@@ -20,5 +21,6 @@ export class SettingsComponent implements OnInit {
 
   onChecked(toggle: MatSlideToggle): void {
     this.customLabelsEnabled = toggle.checked;
+    this.feedbackService.setUseCustomLabels(this.customLabelsEnabled);
   }
 }

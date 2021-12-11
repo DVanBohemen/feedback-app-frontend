@@ -1,0 +1,14 @@
+<input type="hidden" #selection>
+
+<div class="card-container">
+
+    <!--    Positive -->
+    <!--    Template variables  + class binding-->
+    <div class="customLabel" *ngFor="let label of getCustomFeedbackLabels()">
+        <button #labelButton [class.card-active]="label.selected" (click)="onSelectCustomUp(labelButton, label)" class="card card-small thumb-card" tabindex="0">
+            <mat-icon *ngIf="label.positive" class="material-icons thumb-small" >thumb_up_alt</mat-icon>
+            <mat-icon *ngIf="!label.positive" class="material-icons thumb-small">thumb_down_alt</mat-icon>
+            <span>{{ label.name }}</span>
+        </button>
+    </div>
+</div>

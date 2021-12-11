@@ -6,13 +6,18 @@
             <mat-label>Naam van de label</mat-label>
             <input matInput id="labelNameInput" formControlName="labelName">
         </mat-form-field>
-      </span>
+    </span>
     <span class="spacer">
       <mat-button-toggle-group name="positiveOrFeedback" class="spacer" aria-label="Positive or Feedback">
         <mat-button-toggle value="Positive" (change)="setPositive()" checked="true"><mat-icon class="material-icons thumb-small">thumb_up_alt</mat-icon></mat-button-toggle>
         <mat-button-toggle value="Negative" (change)="setNegative()"><mat-icon class="material-icons thumb-small">thumb_down_alt</mat-icon></mat-button-toggle>
       </mat-button-toggle-group>
-      <button mat-raised-button (click)="removeLabel()" color="warn" class="spacer">Verwijderen</button>
+      <span class="spacer" [formGroup]="labelFormGroup">
+        <mat-form-field appearance="outline">
+              <mat-label>Gewicht van de label</mat-label>
+              <input type="number" matInput id="labelWeightInput" formControlName="labelWeight">
+        </mat-form-field>
+      </span>
       <button mat-raised-button (click)="addLabel()" color="primary" class="spacer">Toevoegen</button>
       </span>
   </div>

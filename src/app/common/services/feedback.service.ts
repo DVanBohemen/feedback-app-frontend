@@ -3,6 +3,11 @@ import {HttpClient} from "@angular/common/http";
 import {DataService} from "./data.service";
 import {ShortFeedbackFormGeneralModel} from "../../short-feedback/short-feedback-general-impression/short-feedback-general-form.model";
 import {ShortFeedbackFormPartialModel} from "../../short-feedback/short-feedback-parts/short-feedback-form-partial.model";
+import {J} from '@angular/cdk/keycodes';
+import {CustomFeedbackFormModel} from '../models/short-feedback-form-custom-feedback.model';
+import {CustomFeedbackLabel} from '../models/custom-feedback-label.model';
+import {PostCustomLabelModel} from '../models/post-custom-label.model';
+import {CustomFeedbackPostLabelModel} from '../models/custom-feedback-post-label.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +16,63 @@ export class FeedbackService extends DataService{
   constructor(http: HttpClient) {
     super(http)
   }
-  private _courseFeedbackUrl = "http://localhost:7000/course/feedback";
-  private _useCustomLabelsUrl = "http://localhost:7000/labels/use-custom";
+    private _courseFeedbackUrl = "http://localhost:7000/course/feedback";
+    private _courseFeedbackCustomUrl = "http://localhost:7000/course/feedback/custom";
 
   postFeedback(generalFeedback: ShortFeedbackFormGeneralModel, partialFeedback?: ShortFeedbackFormPartialModel) {
-    this.post({ generalFeedback: this.generateGeneralFeedbackDTO(generalFeedback), partialFeedback: this.generatePartialFeedbackDTO(partialFeedback)}, this._courseFeedbackUrl)
-    .subscribe(response => {
-      alert("Feedback successfully posted")
-    }, error => {
-      alert('Error when posting feedback!');
-      console.log(error);
-    });
+    if (partialFeedback !== undefined) {
+    this.post({
+      generalFeedback: this.generateGeneralFeedbackDTO(generalFeedback),
+      partialFeedback: this.generatePartialFeedbackDTO(partialFeedback)
+    }, this._courseFeedbackUrl)
+        .subscribe(response => {
+          console.log("GeneralFeedback posted: " + JSON.stringify(generalFeedback))
+          console.log("PartialFeedback posted: " + JSON.stringify(partialFeedback))
+          alert("Feedback successfully posted")
+        }, error => {
+          alert('Error when posting feedback!');
+          console.log(error);
+        });
+    } else {
+      this.post({
+        generalFeedback: this.generateGeneralFeedbackDTO(generalFeedback)
+      }, this._courseFeedbackUrl)
+          .subscribe(response => {
+            console.log("GeneralFeedback posted: " + JSON.stringify(generalFeedback))
+            alert("Feedback successfully posted")
+          }, error => {
+            alert('Error when posting feedback!');
+            console.log(error);
+          });
+    }
+  }
+
+  postCustomFeedback(generalFeedback: ShortFeedbackFormGeneralModel, customFeedbackLabels?: CustomFeedbackLabel[]) {
+    if (customFeedbackLabels !== undefined) {
+      this.post({
+        generalFeedback: this.generateGeneralFeedbackDTO(generalFeedback),
+        customFeedback: FeedbackService.generateCustomFeedbackDTO(customFeedbackLabels)
+      }, this._courseFeedbackCustomUrl)
+          .subscribe(response => {
+            console.log("GeneralFeedback posted: " + JSON.stringify(generalFeedback))
+            console.log("CustomFeedback posted: " + JSON.stringify(customFeedbackLabels))
+            alert("Feedback successfully posted")
+          }, error => {
+            alert('Error when posting feedback!');
+            console.log(error);
+          });
+    } else {
+      this.post({
+        generalFeedback: this.generateGeneralFeedbackDTO(generalFeedback)
+      }, this._courseFeedbackUrl)
+          .subscribe(response => {
+            console.log("GeneralFeedback posted: " + JSON.stringify(generalFeedback))
+            alert("Feedback successfully posted")
+          }, error => {
+            alert('Error when posting feedback!');
+            console.log(error);
+          });
+    }
   }
 
   generateGeneralFeedbackDTO(generalFeedback: ShortFeedbackFormGeneralModel) {
@@ -33,8 +84,7 @@ export class FeedbackService extends DataService{
     }
   }
 
-  generatePartialFeedbackDTO(partialFeedback?: ShortFeedbackFormPartialModel) {
-    if(partialFeedback !== undefined) {
+  generatePartialFeedbackDTO(partialFeedback: ShortFeedbackFormPartialModel) {
       return {
         structurePositiveWeight: partialFeedback.structurePositiveWeight,
         structurePositiveText: partialFeedback.structurePositiveText,
@@ -61,56 +111,13 @@ export class FeedbackService extends DataService{
         explanationPositive: partialFeedback.explanationPositive,
         explanationNegative: partialFeedback.explanationNegative
       }
-    } else {
-      return {}
     }
-  }
 
-  getUseCustomLabels() {
-    let useCustomLabels = false;
-    this.get(this._courseFeedbackUrl)
-    .subscribe(response => {
-      console.log(response)
-      useCustomLabels = false; //todo
-    }, error => {
-      alert('Error when creating course!');
-      console.log(error);
-    });
-    return useCustomLabels
-  }
-
-
-  setUseCustomLabels() {
-    let useCustomLabels = true;
-    this.put(useCustomLabels, this._useCustomLabelsUrl)
-    .subscribe(response => {
-      console.log(response)
-      useCustomLabels = true; //todo
-    }, error => {
-      alert('Error when updating custom label usage!');
-      console.log(error);
-    });
-  }
-
-  postCustomLabels(customLabels: []) {
-    this.post(customLabels, this._useCustomLabelsUrl)
-    .subscribe(response => {
-      console.log(response)
-    }, error => {
-      alert('Error when updating custom label usage!');
-      console.log(error);
-    });
-  }
-
-  getCustomLabels() {
-    this.get(this._useCustomLabelsUrl)
-    .subscribe(response => {
-      console.log(response)
-      return response;
-    }, error => {
-      alert('Error when creating course!');
-      console.log(error);
-    });
-    return [];
-  }
+    private static generateCustomFeedbackDTO(customFeedbackLabels: CustomFeedbackLabel[]) {
+      let labels = []
+        for (const label of customFeedbackLabels) {
+            labels.push(new CustomFeedbackPostLabelModel(label.selected, label.name, label.positive, label.weight))
+        }
+        return labels;
+    }
 }

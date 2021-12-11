@@ -5,6 +5,7 @@ import {NotFoundError} from "../models/not-found-error.model";
 import {catchError} from "rxjs/operators";
 import {AppError} from "../models/error.model";
 import {AccessControlAllowMissingError} from "../models/access-control-allow-missing-error.model";
+import {UnprocessableEntityError} from '../models/unprocessable-entity-error';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +56,8 @@ export class DataService {
     }))
   }
 
-  delete(resource: Object, url: string) {
-    return this._http.delete(url, resource)
+  delete(url: string) {
+    return this._http.delete(url)
     .pipe(catchError( err => {
       return DataService.handleError(err);
     }))
@@ -65,8 +66,10 @@ export class DataService {
   protected static handleError(error: Response) {
     if (error.status === 404) {
       return throwError(new NotFoundError())
+    } else if (error.status === 422) {
+      return throwError(new UnprocessableEntityError())
     } else {
-      return throwError(new AppError("App data error raised"))
-    }
+        return throwError(new AppError("App data error raised"))
+      }
   }
 }
