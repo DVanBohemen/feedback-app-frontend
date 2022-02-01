@@ -5,10 +5,15 @@
   <div class="feedback-header">
     <h2 >Wat vond je van {{ course }}?</h2>
   </div>
-  <p>Algemene impressie</p>
-  <app-short-feedback-general-impression (newGeneralImpressionEvent)="addGeneralFeedback($event)"></app-short-feedback-general-impression>
-  <p>Onderdelen</p>
-  <app-short-feedback-parts *ngIf="!useCustomLabels()" (newPartialtFeedbackEvent)="addPartialFeedback($event)"></app-short-feedback-parts>
-  <app-short-feedback-custom-parts *ngIf="useCustomLabels()" (newCustomFeedbackEvent)="addCustomFeedback($event)"></app-short-feedback-custom-parts>
-  <button mat-raised-button color="primary" *ngIf="showSubmit()" (click)="submit()">Feedback verzenden</button>
+  <div class="content" *ngIf="useLabelsFeature(); else dontUseLabels">
+    <p>Algemene impressie</p>
+    <app-short-feedback-general-impression (newGeneralImpressionEvent)="addGeneralFeedback($event)"></app-short-feedback-general-impression>
+    <p>Onderdelen</p>
+    <app-short-feedback-parts *ngIf="!useCustomLabels()" (newPartialtFeedbackEvent)="addPartialFeedback($event)"></app-short-feedback-parts>
+    <app-short-feedback-custom-parts *ngIf="useCustomLabels()" (newCustomFeedbackEvent)="addCustomFeedback($event)"></app-short-feedback-custom-parts>
+    <button mat-raised-button color="primary" *ngIf="showSubmit()" (click)="submit()">Feedback verzenden</button>
+  </div>
+  <ng-template #dontUseLabels>
+    <app-feedback-score></app-feedback-score>
+  </ng-template>
 </div>

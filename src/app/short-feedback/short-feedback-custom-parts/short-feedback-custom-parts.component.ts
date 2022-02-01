@@ -1,6 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ShortFeedbackFormPartialModel} from '../short-feedback-parts/short-feedback-form-partial.model';
-import {CustomFeedbackFormModel} from '../../common/models/short-feedback-form-custom-feedback.model';
 import {CustomFeedbackService} from '../../common/services/custom-feedback.service';
 import {Label} from '../../common/models/label.model';
 import {CustomFeedbackLabel} from '../../common/models/custom-feedback-label.model';

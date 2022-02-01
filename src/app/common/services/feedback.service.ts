@@ -3,11 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {DataService} from "./data.service";
 import {ShortFeedbackFormGeneralModel} from "../../short-feedback/short-feedback-general-impression/short-feedback-general-form.model";
 import {ShortFeedbackFormPartialModel} from "../../short-feedback/short-feedback-parts/short-feedback-form-partial.model";
-import {J} from '@angular/cdk/keycodes';
-import {CustomFeedbackFormModel} from '../models/short-feedback-form-custom-feedback.model';
 import {CustomFeedbackLabel} from '../models/custom-feedback-label.model';
-import {PostCustomLabelModel} from '../models/post-custom-label.model';
 import {CustomFeedbackPostLabelModel} from '../models/custom-feedback-post-label.model';
+import {FeedbackForm} from '../../api/models/feedback-form';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +16,21 @@ export class FeedbackService extends DataService{
   }
     private _courseFeedbackUrl = "http://localhost:7000/course/feedback";
     private _courseFeedbackCustomUrl = "http://localhost:7000/course/feedback/custom";
+
+
+    postScoreFeedback(feedbackForm: FeedbackForm) {
+        this.post({
+            name: "feedbackForm.name",
+            score: 1,
+            comment: "feedbackForm.comment"
+        }, this._courseFeedbackUrl).subscribe(response => {
+            console.log("Score feedback posted: " + JSON.stringify(feedbackForm))
+            alert("Feedback successfully posted")
+        }, error => {
+            alert('Error when posting feedback!');
+            console.log(error);
+        });
+    }
 
   postFeedback(generalFeedback: ShortFeedbackFormGeneralModel, partialFeedback?: ShortFeedbackFormPartialModel) {
     if (partialFeedback !== undefined) {

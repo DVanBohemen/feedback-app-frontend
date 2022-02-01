@@ -4,7 +4,9 @@
 <mat-divider class="spacer"></mat-divider>
 <app-score></app-score>
 <mat-divider class="spacer"></mat-divider>
-<mat-slide-toggle #checked (change)="onChecked(checked)" [checked]="customLabelsEnabled">Gebruik handgemaakte labels</mat-slide-toggle>
-<mat-divider class="spacer"></mat-divider>
-<app-label-creator *ngIf="customLabelsEnabled"></app-label-creator>
+<div *ngIf="useLabelsFeature()">
+    <mat-slide-toggle #checked (change)="onChecked(checked)" [checked]="customLabelsEnabled">Gebruik handgemaakte labels</mat-slide-toggle>
+    <mat-divider class="spacer"></mat-divider>
+    <app-label-creator *ngIf="customLabelsEnabled"></app-label-creator>
+</div>
 

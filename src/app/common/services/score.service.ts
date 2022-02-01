@@ -28,7 +28,7 @@ class Score {
 
 @Injectable()
 export class ScoreService extends DataService {
-  private _scoreUrl = "http://localhost:7000/course/score";
+  private _scoreUrl = "http://localhost:7000/course/average";
   private retrievedScore: Score;
 
   constructor(http: HttpClient) {

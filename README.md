@@ -1,6 +1,17 @@
 # FeedbackApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.11.
+This project is used for training purposes of API development.
+
+## Installation & Start
+1. Install Node v12.14 or newer https://nodejs.org/en/download/
+2. Check if Node is installed `node -v`
+3. Check if NPM is installed `npm -v`
+4. Run `npm i`
+5. Run `npm run start` 
+
+digital envelope routines:unsupported error?
+1. Create environment variable NODE_OPTIONS=--openssl-legacy-provider
 
 ## Development server
 

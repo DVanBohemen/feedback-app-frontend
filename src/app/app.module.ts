@@ -33,6 +33,12 @@ import {NgRatingBarModule} from 'ng-rating-bar';
 import {CustomFeedbackService} from './common/services/custom-feedback.service';
 import {FeedbackService} from './common/services/feedback.service';
 import { ShortFeedbackCustomPartsComponent } from './short-feedback/short-feedback-custom-parts/short-feedback-custom-parts.component';
+import {RuntimeConfigLoaderModule} from 'runtime-config-loader';
+import {FeatureFlagsService} from './common/services/feature-flags.service';
+import { FeedbackScoreComponent } from './short-feedback/feedback-score/feedback-score.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {ApiModule} from './api/api.module';
+import {BaseService} from './api/base-service';
 
 @NgModule({
   declarations: [
@@ -45,35 +51,40 @@ import { ShortFeedbackCustomPartsComponent } from './short-feedback/short-feedba
     LabelCreatorComponent,
     CourseComponent,
     ScoreComponent,
-    ShortFeedbackCustomPartsComponent
+    ShortFeedbackCustomPartsComponent,
+    FeedbackScoreComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    FormsModule,
-    MatSlideToggleModule,
-    MatListModule,
-    MatStepperModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    NgSelectModule,
-    MatButtonToggleModule,
-    MatTableModule,
-    DragDropModule,
-    HttpClientModule,
-    NgRatingBarModule
-  ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatIconModule,
+		RuntimeConfigLoaderModule,
+		FormsModule,
+		MatSlideToggleModule,
+		MatListModule,
+		MatStepperModule,
+		MatButtonModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		NgSelectModule,
+		MatButtonToggleModule,
+		MatTableModule,
+		DragDropModule,
+		HttpClientModule,
+		NgRatingBarModule,
+		MatSliderModule,
+		ApiModule.forRoot({rootUrl: 'http://localhost:7000'}),
+	],
   providers: [
     DataService,
     ScoreService,
+    FeatureFlagsService,
     CourseService,
     CustomFeedbackService,
     FeedbackService,
-    { provide: ErrorHandler, useClass: AppErrorHandler } //Replace Default error handler
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

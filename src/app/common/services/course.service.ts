@@ -17,8 +17,12 @@ export class CourseService extends DataService {
 
     getCourse() {
     this.get<Course>(this._courseUrl).subscribe(response => {
-      console.log("Retrieved coursename: " + response.courseName)
-      this.retrievedCourse = response.courseName;
+      if (response === null) {
+        this.retrievedCourse = "";
+      } else {
+        console.log("Retrieved coursename: " + response.courseName)
+        this.retrievedCourse = response.courseName;
+      }
       }, error => {
         alert('Error when retrieving course!');
         console.log(error);

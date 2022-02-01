@@ -5,33 +5,39 @@ import {ShortFeedbackFormGeneralModel} from "./short-feedback-general-impression
 import {FeedbackService} from "../common/services/feedback.service";
 import {CustomFeedbackService} from '../common/services/custom-feedback.service';
 import {CustomFeedbackLabel} from '../common/models/custom-feedback-label.model';
+import {FeatureFlagsService} from '../common/services/feature-flags.service';
 
 @Component({
   selector: 'app-short-feedback',
   templateUrl: './short-feedback.component.html',
   styleUrls: ['./short-feedback.component.css']
 })
-
 export class ShortFeedbackComponent implements OnInit {
   course: string;
   private generalFeedback: ShortFeedbackFormGeneralModel | undefined;
   private partialFeedback: ShortFeedbackFormPartialModel | undefined;
+  private _useLabelsFeature: boolean | undefined;
   private _customFeedback: CustomFeedbackLabel[] | undefined;
   private _feedbackService: FeedbackService;
   private _customFeedbackService: CustomFeedbackService;
   private _courseService: CourseService;
   private _useCustomLabels: boolean = false;
+  private _featureService: FeatureFlagsService;
 
-  constructor(courseService: CourseService, feedbackService: FeedbackService, customFeedbackService: CustomFeedbackService) {
+  constructor(courseService: CourseService, feedbackService: FeedbackService, customFeedbackService: CustomFeedbackService, featureService: FeatureFlagsService) {
     this._feedbackService = feedbackService;
     this._courseService = courseService;
     this._customFeedbackService = customFeedbackService;
+    this._featureService = featureService;
     this.course = "Geen cursus gedefinieerd";
   }
 
   ngOnInit(): void {
     this.course = this._courseService.getCourse();
-    this._useCustomLabels = this._customFeedbackService.getUseCustomLabels();
+    this._useLabelsFeature = this._featureService.isFeatureFlagEnabled("useLabels")
+    if (this._useLabelsFeature) {
+      this._useCustomLabels = this._customFeedbackService.getUseCustomLabels();
+    }
   }
 
   addGeneralFeedback($event: ShortFeedbackFormGeneralModel) {
@@ -52,6 +58,10 @@ export class ShortFeedbackComponent implements OnInit {
 
   useCustomLabels() {
     return this._useCustomLabels;
+  }
+
+  useLabelsFeature() {
+    return this._useLabelsFeature;
   }
 
   submit() {

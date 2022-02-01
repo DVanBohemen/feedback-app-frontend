@@ -1,6 +1,6 @@
 <h3>Behaalde score van de {{ course }}</h3>
 <div id="rating">
-<ng-rating-bar
+<ng-rating-bar *n
         [(value)]="currentRate"
         [ratingCount]="maxRate"
         [resetAble]="true"
@@ -10,5 +10,5 @@
 ></ng-rating-bar>
     <hr>
     <pre>Score: <b>{{currentRate}}</b></pre>
-    <pre>Max haalbare score: <b>{{maxRate}}</b></pre>
+    <pre *ngIf="useLabels">Max haalbare score: <b>{{maxRate}}</b></pre>
 </div>

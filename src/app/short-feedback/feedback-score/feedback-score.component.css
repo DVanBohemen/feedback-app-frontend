@@ -1,0 +1,16 @@
+.spacer {
+	margin: 20px 20px
+}
+
+.feedback-score {
+	display: block;
+}
+
+.slider {
+	margin: 10px 20px 10px 10px;
+}
+
+.submit-button {
+	display: block;
+	margin: auto;
+}

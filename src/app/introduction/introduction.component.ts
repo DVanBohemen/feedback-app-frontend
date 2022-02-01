@@ -6,7 +6,7 @@ import {CourseService} from "../common/services/course.service";
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.css']
 })
-export class IntroductionComponent implements OnInit, AfterContentInit {
+export class IntroductionComponent implements OnInit {
   course: string;
   private courseService: CourseService;
 
@@ -16,9 +16,6 @@ export class IntroductionComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-  }
-
-  ngAfterContentInit(): void {
     this.course = this.courseService.getCourse();
   }
 }

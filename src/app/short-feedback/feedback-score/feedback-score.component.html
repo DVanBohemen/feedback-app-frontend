@@ -1,0 +1,25 @@
+<form class=feedback-score (ngSubmit)="submit()">
+    <h3>Je naam</h3>
+    <mat-form-field appearance="fill">
+        <mat-label>Je naam</mat-label>
+        <input matInput [value]="feedbackName.value" [formControl]="feedbackName" name="name">
+    </mat-form-field>
+    <h3>{{ course }} score</h3>
+    <mat-slider class="slider"
+            thumbLabel
+            [formControl]="feedbackScore"
+            tickInterval="1000"
+            step="1"
+            min="0"
+            max="10"
+            ></mat-slider>
+    <span>{{ feedbackScore.value}} </span>
+    <mat-divider class="spacer"></mat-divider>
+    <h3>Extra opmerking</h3>
+    <mat-form-field appearance="fill">
+        <mat-label>Extra opmerking</mat-label>
+        <input matInput [value]="feedbackComment.value" [formControl]="feedbackComment" name="comment">
+    </mat-form-field>
+    <mat-divider class="spacer"></mat-divider>
+    <button class="submit-button" mat-raised-button type="submit">Opslaan</button>
+</form>
